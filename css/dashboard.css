@@ -1,0 +1,624 @@
+/* =============================================
+   ACME BANK - CSS DASHBOARD
+   ============================================= */
+
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap');
+
+:root {
+  --azul-oscuro: #0a2342;
+  --azul-medio: #1a4a7a;
+  --azul-claro: #2e7dc5;
+  --dorado: #c9a84c;
+  --blanco: #ffffff;
+  --gris-claro: #f4f6f9;
+  --gris-medio: #b0b8c5;
+  --gris-texto: #4a5568;
+  --rojo-error: #e53e3e;
+  --verde-exito: #2f855a;
+  --sidebar-ancho: 250px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Source Sans 3', sans-serif;
+  background-color: var(--gris-claro);
+  min-height: 100vh;
+  display: flex;
+}
+
+/* ========== SIDEBAR ========== */
+.sidebar {
+  width: var(--sidebar-ancho);
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--azul-oscuro) 0%, var(--azul-medio) 100%);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  transition: transform 0.3s ease;
+}
+
+/* Logo en el sidebar */
+.sidebar-logo {
+  padding: 25px 20px;
+  text-align: center;
+  border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+}
+
+.sidebar-logo .nombre-banco {
+  font-family: 'Playfair Display', serif;
+  color: var(--dorado);
+  font-size: 22px;
+  letter-spacing: 2px;
+}
+
+.sidebar-logo .slogan {
+  color: var(--gris-medio);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+/* Info del usuario en sidebar */
+.sidebar-usuario {
+  padding: 20px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-usuario .saludo {
+  color: var(--gris-medio);
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.sidebar-usuario .nombre-usuario {
+  color: var(--blanco);
+  font-size: 15px;
+  font-weight: 600;
+  margin-top: 3px;
+}
+
+/* Menú de navegación */
+.sidebar-menu {
+  flex: 1;
+  padding: 15px 0;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.sidebar-menu li a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 13px 20px;
+  color: var(--gris-medio);
+  text-decoration: none;
+  font-size: 14px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+
+.sidebar-menu li a:hover,
+.sidebar-menu li a.activo {
+  background-color: rgba(46, 125, 197, 0.3);
+  color: var(--blanco);
+  border-left: 3px solid var(--dorado);
+}
+
+.sidebar-menu li a .icono-menu {
+  font-size: 18px;
+  width: 22px;
+  text-align: center;
+}
+
+/* Botón de cerrar sesión abajo */
+.sidebar-cerrar-sesion {
+  padding: 15px 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+}
+
+.sidebar-cerrar-sesion a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fc8181;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 10px;
+  border-radius: 6px;
+  transition: background 0.2s;
+}
+
+.sidebar-cerrar-sesion a:hover {
+  background-color: rgba(252, 129, 129, 0.1);
+}
+
+/* ========== CONTENIDO PRINCIPAL ========== */
+.contenido-principal {
+  margin-left: var(--sidebar-ancho);
+  flex: 1;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Barra superior del dashboard */
+.barra-top {
+  background-color: var(--blanco);
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #e2e8f0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.barra-top .titulo-pagina {
+  font-family: 'Playfair Display', serif;
+  color: var(--azul-oscuro);
+  font-size: 20px;
+}
+
+.barra-top .fecha-actual {
+  color: var(--gris-texto);
+  font-size: 13px;
+}
+
+/* Botón hamburguesa (móvil) */
+.btn-menu-movil {
+  display: none;
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: var(--azul-oscuro);
+}
+
+/* Área de contenido */
+.area-contenido {
+  padding: 30px;
+  flex: 1;
+}
+
+/* ========== TARJETA DE CUENTA (resumen) ========== */
+.tarjeta-cuenta {
+  background: linear-gradient(135deg, var(--azul-medio) 0%, var(--azul-oscuro) 100%);
+  border-radius: 12px;
+  padding: 30px;
+  color: var(--blanco);
+  margin-bottom: 25px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tarjeta-cuenta::before {
+  content: '🏦';
+  position: absolute;
+  right: 25px;
+  top: 20px;
+  font-size: 60px;
+  opacity: 0.15;
+}
+
+.tarjeta-cuenta .etiqueta-cuenta {
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gris-medio);
+  margin-bottom: 5px;
+}
+
+.tarjeta-cuenta .numero-cuenta {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  letter-spacing: 2px;
+  margin-bottom: 20px;
+  color: var(--dorado);
+}
+
+.tarjeta-cuenta .fila-info {
+  display: flex;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.tarjeta-cuenta .item-info .etiqueta {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--gris-medio);
+}
+
+.tarjeta-cuenta .item-info .valor {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--blanco);
+  margin-top: 3px;
+}
+
+.tarjeta-cuenta .item-info .valor.saldo {
+  font-size: 24px;
+  color: #68d391;
+}
+
+/* ========== SECCIONES DEL DASHBOARD ========== */
+.seccion-dashboard {
+  display: none;
+}
+
+.seccion-dashboard.activa {
+  display: block;
+}
+
+/* Título de sección */
+.titulo-seccion {
+  font-family: 'Playfair Display', serif;
+  color: var(--azul-oscuro);
+  font-size: 22px;
+  margin-bottom: 6px;
+}
+
+.linea-dorada {
+  width: 40px;
+  height: 2px;
+  background-color: var(--dorado);
+  margin-bottom: 20px;
+}
+
+/* Tarjeta blanca de contenido */
+.tarjeta-contenido {
+  background-color: var(--blanco);
+  border-radius: 10px;
+  padding: 25px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+}
+
+/* ========== FORMULARIOS DEL DASHBOARD ========== */
+.grupo-campo {
+  margin-bottom: 18px;
+}
+
+.grupo-campo label {
+  display: block;
+  color: var(--azul-oscuro);
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.grupo-campo input,
+.grupo-campo select {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #d1d9e0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: 'Source Sans 3', sans-serif;
+  color: var(--gris-texto);
+  background-color: var(--gris-claro);
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.grupo-campo input:focus,
+.grupo-campo select:focus {
+  border-color: var(--azul-claro);
+  background-color: var(--blanco);
+}
+
+.grupo-campo input[readonly] {
+  background-color: #edf2f7;
+  color: var(--gris-texto);
+  cursor: not-allowed;
+}
+
+.campo-max {
+  max-width: 350px;
+}
+
+/* Botones del dashboard */
+.btn-principal {
+  padding: 12px 25px;
+  background: linear-gradient(135deg, var(--azul-medio), var(--azul-claro));
+  color: var(--blanco);
+  border: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Source Sans 3', sans-serif;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: opacity 0.3s;
+  margin-right: 10px;
+}
+
+.btn-principal:hover {
+  opacity: 0.9;
+}
+
+.btn-imprimir {
+  padding: 12px 25px;
+  background: var(--blanco);
+  color: var(--azul-medio);
+  border: 1.5px solid var(--azul-medio);
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+  font-family: 'Source Sans 3', sans-serif;
+  cursor: pointer;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  transition: all 0.3s;
+}
+
+.btn-imprimir:hover {
+  background: var(--azul-medio);
+  color: var(--blanco);
+}
+
+/* ========== TABLA DE TRANSACCIONES ========== */
+.tabla-transacciones {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+.tabla-transacciones th {
+  background-color: var(--azul-oscuro);
+  color: var(--blanco);
+  padding: 12px 10px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.tabla-transacciones td {
+  padding: 11px 10px;
+  border-bottom: 1px solid #e2e8f0;
+  color: var(--gris-texto);
+}
+
+.tabla-transacciones tr:hover td {
+  background-color: #f7fafc;
+}
+
+.tabla-transacciones .tipo-consignacion {
+  color: var(--verde-exito);
+  font-weight: 600;
+}
+
+.tabla-transacciones .tipo-retiro {
+  color: var(--rojo-error);
+  font-weight: 600;
+}
+
+.sin-transacciones {
+  text-align: center;
+  color: var(--gris-medio);
+  padding: 30px;
+  font-size: 14px;
+}
+
+/* Tabla responsive */
+.tabla-responsive {
+  overflow-x: auto;
+}
+
+/* ========== RESUMEN DE TRANSACCIÓN ========== */
+.caja-resumen-transaccion {
+  background-color: #f0fff4;
+  border: 1px solid var(--verde-exito);
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+}
+
+.caja-resumen-transaccion h4 {
+  color: var(--verde-exito);
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(47, 133, 90, 0.3);
+}
+
+.caja-resumen-transaccion .fila-dato {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.caja-resumen-transaccion .fila-dato .etiqueta {
+  color: var(--gris-texto);
+  font-weight: 600;
+}
+
+.caja-resumen-transaccion .fila-dato .valor {
+  color: var(--azul-oscuro);
+}
+
+/* Mensajes */
+.mensaje-error {
+  background-color: #fff5f5;
+  border: 1px solid var(--rojo-error);
+  color: var(--rojo-error);
+  padding: 12px 15px;
+  border-radius: 6px;
+  font-size: 13px;
+  margin-bottom: 15px;
+  display: none;
+}
+
+.mensaje-error.visible {
+  display: block;
+}
+
+/* ========== CERTIFICADO BANCARIO ========== */
+.certificado {
+  border: 3px solid var(--azul-oscuro);
+  border-radius: 8px;
+  padding: 40px;
+  max-width: 700px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.certificado::before {
+  content: '';
+  position: absolute;
+  top: 6px; left: 6px; right: 6px; bottom: 6px;
+  border: 1px solid var(--dorado);
+  border-radius: 5px;
+  pointer-events: none;
+}
+
+.certificado-encabezado {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.certificado-encabezado .logo-cert {
+  font-size: 40px;
+}
+
+.certificado-encabezado h2 {
+  font-family: 'Playfair Display', serif;
+  color: var(--azul-oscuro);
+  font-size: 28px;
+  letter-spacing: 3px;
+  margin: 5px 0;
+}
+
+.certificado-encabezado .subtitulo-cert {
+  color: var(--gris-texto);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.linea-dorada-cert {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(to right, transparent, var(--dorado), transparent);
+  margin: 20px 0;
+}
+
+.certificado-titulo {
+  font-family: 'Playfair Display', serif;
+  color: var(--azul-oscuro);
+  font-size: 20px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.certificado-cuerpo {
+  color: var(--gris-texto);
+  font-size: 15px;
+  line-height: 2;
+  text-align: justify;
+}
+
+.certificado-cuerpo strong {
+  color: var(--azul-oscuro);
+}
+
+.certificado-pie {
+  margin-top: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.certificado-firma {
+  text-align: center;
+}
+
+.linea-firma {
+  width: 180px;
+  height: 1px;
+  background-color: var(--azul-oscuro);
+  margin-bottom: 5px;
+}
+
+.certificado-firma p {
+  font-size: 12px;
+  color: var(--gris-texto);
+}
+
+/* ========== RESPONSIVE ========== */
+@media (max-width: 768px) {
+  .sidebar {
+    transform: translateX(-100%);
+  }
+
+  .sidebar.abierto {
+    transform: translateX(0);
+  }
+
+  .contenido-principal {
+    margin-left: 0;
+  }
+
+  .btn-menu-movil {
+    display: block;
+  }
+
+  .area-contenido {
+    padding: 20px 15px;
+  }
+
+  .tarjeta-cuenta .fila-info {
+    gap: 20px;
+  }
+
+  .tabla-transacciones th,
+  .tabla-transacciones td {
+    padding: 8px 6px;
+    font-size: 12px;
+  }
+
+  .certificado {
+    padding: 25px 15px;
+  }
+
+  .certificado-pie {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  @media print {
+    .sidebar, .barra-top, .btn-imprimir, .btn-principal {
+      display: none !important;
+    }
+    .contenido-principal {
+      margin-left: 0;
+    }
+  }
+}
+
+@media print {
+  .sidebar, .barra-top, .btn-imprimir, .btn-principal {
+    display: none !important;
+  }
+  .contenido-principal {
+    margin-left: 0;
+  }
+  .area-contenido {
+    padding: 0;
+  }
+}
