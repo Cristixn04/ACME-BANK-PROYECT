@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACME Bank - Inicio de Sesión</title>
+  <link rel="stylesheet" href="css/index.css" />
+</head>
+<body>
+
+  <div class="contenedor-login">
+
+    <!-- Panel izquierdo decorativo -->
+    <div class="panel-izquierdo">
+
+        <div class="animacion-fondo"></div>
+
+        <div class="logo-banco">
+            <span class="icono">🏦</span>
+            <h1>ACME</h1>
+            <strong >Bank & Trust</strong>
+        </div>
+
+        <div class="linea-dorada"></div>
+
+        <p class="texto-bienvenida">
+            Bienvenido a su banca en línea.<br />
+            Gestione su cuenta de forma segura y confiable.
+        </p>
+
+    </div>
+
+    <!-- Panel derecho con el formulario -->
+    <div class="panel-derecho">
+      <h2 class="titulo-formulario">Iniciar Sesión</h2>
+      <p class="subtitulo-formulario">Ingrese sus credenciales para acceder</p>
+
+      <!-- Mensaje de error -->
+      <div class="mensaje-error" id="mensaje-error">
+        Credenciales incorrectas. Por favor verifique sus datos.
+      </div>
+
+      <!-- Formulario de login -->
+      <form id="formulario-login">
+
+        <!-- Tipo de identificación -->
+        <div class="grupo-campo">
+          <label for="tipo-id">Tipo de Identificación</label>
+          <select id="tipo-id" name="tipo-id">
+            <option value="">-- Seleccione --</option>
+            <option value="CC">Cédula de Ciudadanía (CC)</option>
+            <option value="CE">Cédula de Extranjería (CE)</option>
+            <option value="TI">Tarjeta de Identidad (TI)</option>
+            <option value="PP">Pasaporte (PP)</option>
+          </select>
+        </div>
+
+        <!-- Número de identificación -->
+        <div class="grupo-campo">
+          <label for="numero-id">Número de Identificación</label>
+          <input
+            type="text"
+            id="numero-id"
+            name="numero-id"
+            placeholder="Ej: 1234567890"
+            maxlength="15"
+          />
+        </div>
+
+        <!-- Contraseña -->
+        <div class="grupo-campo">
+          <label for="contrasena">Contraseña</label>
+          <input
+            type="password"
+            id="contrasena"
+            name="contrasena"
+            placeholder="Ingrese su contraseña"
+          />
+        </div>
+
+        <!-- Botón de ingreso -->
+        <button type="submit" class="btn-principal">Ingresar</button>
+
+      </form>
+
+      <!-- Links adicionales -->
+      <div class="enlaces-formulario">
+        <a href="registro.html">Crear cuenta</a>
+        <a href="recuperar-contrasena.html">Recordar contraseña</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Cargar el JS -->
+  <script src="js/index.js"></script>
+
+</body>
+</html>

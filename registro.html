@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACME Bank - Crear Cuenta</title>
+  <link rel="stylesheet" href="css/registro.css" />
+</head>
+<body class="fondo-neon">
+
+   <div class="animacion-fondo-global"></div>
+  <!-- Encabezado del banco -->
+  <div class="encabezado-banco">
+    <div class="logo-texto">🏦 ACME Bank</div>
+    <p>BANK & TRUST</p>
+  </div>
+
+  <!-- SECCIÓN: Formulario de registro -->
+  <div class="tarjeta-formulario" id="seccion-formulario">
+    <h2>Crear Cuenta Bancaria</h2>
+    <p class="subtitulo">Complete el formulario para registrarse. Todos los campos son obligatorios.</p>
+    <div class="linea-dorada"></div>
+
+    <!-- Mensaje de error global -->
+    <div class="mensaje-error" id="mensaje-error">Error en el formulario.</div>
+
+    <form id="formulario-registro">
+
+      <!-- Fila: Tipo de ID y Número de ID -->
+      <div class="fila-dos-columnas">
+        <div class="grupo-campo">
+          <label for="tipo-id">Tipo de Identificación</label>
+          <select id="tipo-id">
+            <option value="">-- Seleccione --</option>
+            <option value="CC">Cédula de Ciudadanía (CC)</option>
+            <option value="CE">Cédula de Extranjería (CE)</option>
+            <option value="TI">Tarjeta de Identidad (TI)</option>
+            <option value="PP">Pasaporte (PP)</option>
+          </select>
+          <span class="texto-error-campo" id="error-tipo-id"></span>
+        </div>
+        <div class="grupo-campo">
+          <label for="numero-id">Número de Identificación</label>
+          <input type="text" id="numero-id" placeholder="Ej: 1234567890" maxlength="15" />
+          <span class="texto-error-campo" id="error-numero-id"></span>
+        </div>
+      </div>
+
+      <!-- Fila: Nombres y Apellidos -->
+      <div class="fila-dos-columnas">
+        <div class="grupo-campo">
+          <label for="nombres">Nombres</label>
+          <input type="text" id="nombres" placeholder="Sus nombres" />
+          <span class="texto-error-campo" id="error-nombres"></span>
+        </div>
+        <div class="grupo-campo">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" id="apellidos" placeholder="Sus apellidos" />
+          <span class="texto-error-campo" id="error-apellidos"></span>
+        </div>
+      </div>
+
+      <!-- Fila: Género y Teléfono -->
+      <div class="fila-dos-columnas">
+        <div class="grupo-campo">
+          <label for="genero">Género</label>
+          <select id="genero">
+            <option value="">-- Seleccione --</option>
+            <option value="M">Masculino</option>
+            <option value="F">Femenino</option>
+            <option value="O">Otro</option>
+          </select>
+          <span class="texto-error-campo" id="error-genero"></span>
+        </div>
+        <div class="grupo-campo">
+          <label for="telefono">Teléfono</label>
+          <input type="text" id="telefono" placeholder="Ej: 3001234567" maxlength="10" />
+          <span class="texto-error-campo" id="error-telefono"></span>
+        </div>
+      </div>
+
+      <!-- Correo electrónico -->
+      <div class="grupo-campo">
+        <label for="correo">Correo Electrónico</label>
+        <input type="email" id="correo" placeholder="ejemplo@correo.com" />
+        <span class="texto-error-campo" id="error-correo"></span>
+      </div>
+
+      <!-- Fila: Dirección y Ciudad -->
+      <div class="fila-dos-columnas">
+        <div class="grupo-campo">
+          <label for="direccion">Dirección de Residencia</label>
+          <input type="text" id="direccion" placeholder="Ej: Calle 10 # 5-20" />
+          <span class="texto-error-campo" id="error-direccion"></span>
+        </div>
+        <div class="grupo-campo">
+          <label for="ciudad">Ciudad</label>
+          <input type="text" id="ciudad" placeholder="Ej: Bogotá" />
+          <span class="texto-error-campo" id="error-ciudad"></span>
+        </div>
+      </div>
+
+      <!-- Fila: Contraseña y Confirmar -->
+      <div class="fila-dos-columnas">
+        <div class="grupo-campo">
+          <label for="contrasena">Contraseña</label>
+          <input type="password" id="contrasena" placeholder="Mínimo 8 caracteres" />
+          <span class="texto-error-campo" id="error-contrasena"></span>
+        </div>
+        <div class="grupo-campo">
+          <label for="confirmar-contrasena">Confirmar Contraseña</label>
+          <input type="password" id="confirmar-contrasena" placeholder="Repita su contraseña" />
+          <span class="texto-error-campo" id="error-confirmar-contrasena"></span>
+        </div>
+      </div>
+
+      <!-- Botones -->
+      <div class="fila-botones">
+        <button type="submit" class="btn-principal">Crear Cuenta</button>
+        <a href="index.html" class="btn-cancelar">Cancelar</a>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SECCIÓN: Resumen de cuenta creada (oculto al inicio) -->
+  <div class="tarjeta-formulario oculto" id="seccion-resumen">
+    <h2>¡Cuenta Creada Exitosamente!</h2>
+    <p class="subtitulo">Su cuenta bancaria ha sido registrada. Guarde estos datos.</p>
+    <div class="linea-dorada"></div>
+
+    <div class="mensaje-exito">
+      ✅ Su cuenta ha sido creada correctamente en el Banco ACME.
+    </div>
+
+    <div class="caja-resumen">
+      <h3>Resumen de su Nueva Cuenta</h3>
+      <div class="fila-dato">
+        <span class="etiqueta">Número de Cuenta:</span>
+        <span class="valor" id="resumen-numero-cuenta"></span>
+      </div>
+      <div class="fila-dato">
+        <span class="etiqueta">Nombre Completo:</span>
+        <span class="valor" id="resumen-nombre"></span>
+      </div>
+      <div class="fila-dato">
+        <span class="etiqueta">Tipo de Identificación:</span>
+        <span class="valor" id="resumen-tipo-id"></span>
+      </div>
+      <div class="fila-dato">
+        <span class="etiqueta">Número de Identificación:</span>
+        <span class="valor" id="resumen-numero-id"></span>
+      </div>
+      <div class="fila-dato">
+        <span class="etiqueta">Fecha de Creación:</span>
+        <span class="valor" id="resumen-fecha"></span>
+      </div>
+      <div class="fila-dato">
+        <span class="etiqueta">Saldo Inicial:</span>
+        <span class="valor">$0.00</span>
+      </div>
+    </div>
+
+    <a href="index.html" class="link-login">← Ir al Inicio de Sesión</a>
+  </div>
+
+  <script src="js/registro.js"></script>
+
+</body>
+</html>

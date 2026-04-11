@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACME Bank - Recuperar Contraseña</title>
+  <link rel="stylesheet" href="css/recuperar_contraseña.css" />
+</head>
+<body class="fondo-neon">
+
+  <div class="animacion-fondo-global"></div>
+
+  <!-- Encabezado del banco -->
+  <div class="encabezado-banco">
+    <div class="logo-texto">🏦 ACME Bank</div>
+    <p>BANK & TRUST</p>
+  </div>
+
+  <!-- SECCIÓN 1: Formulario de recuperación -->
+  <div class="tarjeta-formulario" id="seccion-recuperar">
+    <h2>Recuperar Contraseña</h2>
+    <p class="subtitulo">Ingrese sus datos para verificar su identidad.</p>
+    <div class="linea-dorada"></div>
+
+    <div class="mensaje-error" id="mensaje-error">Error</div>
+
+    <form id="formulario-recuperar">
+
+      <div class="grupo-campo">
+        <label for="tipo-id">Tipo de Identificación</label>
+        <select id="tipo-id">
+          <option value="">-- Seleccione --</option>
+          <option value="CC">Cédula de Ciudadanía (CC)</option>
+          <option value="CE">Cédula de Extranjería (CE)</option>
+          <option value="TI">Tarjeta de Identidad (TI)</option>
+          <option value="PP">Pasaporte (PP)</option>
+        </select>
+      </div>
+
+      <div class="grupo-campo">
+        <label for="numero-id">Número de Identificación</label>
+        <input type="text" id="numero-id" placeholder="Ej: 1234567890" maxlength="15" />
+      </div>
+
+      <div class="grupo-campo">
+        <label for="correo">Correo Electrónico Registrado</label>
+        <input type="email" id="correo" placeholder="ejemplo@correo.com" />
+      </div>
+
+      <div class="fila-botones">
+        <button type="submit" class="btn-principal">Verificar Identidad</button>
+        <a href="index.html" class="btn-cancelar">Cancelar</a>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SECCIÓN 2: Formulario de nueva contraseña (oculto al inicio) -->
+  <div class="tarjeta-formulario oculto" id="seccion-nueva-contrasena">
+    <h2>Asignar Nueva Contraseña</h2>
+    <p class="subtitulo">Ingrese y confirme su nueva contraseña.</p>
+    <div class="linea-dorada"></div>
+
+    <div class="mensaje-error" id="mensaje-error-nueva">Error</div>
+
+    <form id="formulario-nueva-contrasena">
+
+      <div class="grupo-campo">
+        <label for="nueva-contrasena">Nueva Contraseña</label>
+        <input type="password" id="nueva-contrasena" placeholder="Mínimo 8 caracteres" />
+      </div>
+
+      <div class="grupo-campo">
+        <label for="confirmar-nueva">Confirmar Nueva Contraseña</label>
+        <input type="password" id="confirmar-nueva" placeholder="Repita su nueva contraseña" />
+      </div>
+
+      <small style="color: #718096; font-size: 12px; display:block; margin-bottom:15px;">
+        La contraseña debe tener mínimo 8 caracteres, una mayúscula, un número y un carácter especial (!@#$%^&*).
+      </small>
+
+      <div class="fila-botones">
+        <button type="submit" class="btn-principal">Guardar Contraseña</button>
+        <a href="index.html" class="btn-cancelar">Cancelar</a>
+      </div>
+
+    </form>
+  </div>
+
+  <!-- SECCIÓN 3: Confirmación de éxito (oculto al inicio) -->
+  <div class="tarjeta-formulario oculto" id="seccion-exito">
+    <h2>Contraseña Actualizada</h2>
+    <div class="linea-dorada"></div>
+    <div class="mensaje-exito">
+      ✅ Su contraseña ha sido actualizada correctamente. Ya puede iniciar sesión con su nueva contraseña.
+    </div>
+    <a href="index.html" class="link-login">← Ir al Inicio de Sesión</a>
+  </div>
+
+  <script src="js/recuperar-contrasena.js"></script>
+
+</body>
+</html>

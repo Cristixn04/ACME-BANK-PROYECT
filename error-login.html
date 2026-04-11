@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACME Bank - Error de Acceso</title>
+  <link rel="stylesheet" href="css/formularios.css" />
+  <style>
+    /* Estilos específicos para la página de error */
+    .contenedor-error {
+      text-align: center;
+      max-width: 500px;
+    }
+
+    .icono-error {
+      font-size: 70px;
+      display: block;
+      margin-bottom: 15px;
+    }
+
+    .contenedor-error h2 {
+      color: #e53e3e;
+    }
+
+    .contenedor-error .subtitulo {
+      font-size: 15px;
+    }
+
+    .caja-alerta {
+      background-color: #fff5f5;
+      border: 1px solid #e53e3e;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+      color: #742a2a;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .botones-error {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn-volver {
+      padding: 13px;
+      background: linear-gradient(135deg, #1a4a7a, #2e7dc5);
+      color: white;
+      border: none;
+      border-radius: 6px;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: block;
+      text-align: center;
+      font-family: 'Source Sans 3', sans-serif;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .btn-volver:hover {
+      opacity: 0.9;
+    }
+
+    .link-recuperar {
+      color: #2e7dc5;
+      font-size: 14px;
+      text-decoration: none;
+    }
+
+    .link-recuperar:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Encabezado del banco -->
+  <div class="encabezado-banco">
+    <div class="logo-texto">🏦 ACME Bank</div>
+    <p>BANK & TRUST</p>
+  </div>
+
+  <!-- Tarjeta de error -->
+  <div class="tarjeta-formulario contenedor-error">
+
+    <span class="icono-error">🔒</span>
+    <h2>No se pudo validar su identidad</h2>
+    <p class="subtitulo">Las credenciales ingresadas no son correctas.</p>
+    <div class="linea-dorada" style="margin: 15px auto;"></div>
+
+    <div class="caja-alerta">
+      <strong>⚠️ Acceso Denegado</strong><br /><br />
+      El tipo de identificación, número de identificación o contraseña ingresados no coinciden con ningún registro en nuestro sistema.<br /><br />
+      Por favor verifique sus datos e intente de nuevo. Si olvidó su contraseña, puede recuperarla haciendo clic en el enlace correspondiente.
+    </div>
+
+    <div class="botones-error">
+      <a href="index.html" class="btn-volver">← Intentar de Nuevo</a>
+      <a href="recuperar-contrasena.html" class="link-recuperar">¿Olvidó su contraseña? Recupérela aquí</a>
+      <a href="registro.html" class="link-recuperar">¿No tiene cuenta? Créela aquí</a>
+    </div>
+
+  </div>
+
+</body>
+</html>

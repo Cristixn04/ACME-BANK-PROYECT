@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ACME Bank - Dashboard</title>
+  <link rel="stylesheet" href="css/dashboard.css" />
+</head>
+<body>
+
+  <!-- ========== SIDEBAR ========== -->
+  <nav class="sidebar" id="sidebar">
+
+    <!-- Logo -->
+    <div class="sidebar-logo">
+      <div>🏦</div>
+      <div class="nombre-banco">ACME</div>
+      <div class="slogan">BANK & TRUST</div>
+    </div>
+
+    <!-- Info del usuario -->
+    <div class="sidebar-usuario">
+      <div class="saludo">Bienvenido</div>
+      <div class="nombre-usuario" id="nombre-sidebar">Cargando...</div>
+    </div>
+
+    <!-- Menú de navegación -->
+    <ul class="sidebar-menu">
+      <li>
+        <a href="#" data-seccion="sec-inicio">
+          <span class="icono-menu">🏠</span> Resumen de Cuenta
+        </a>
+      </li>
+      <li>
+        <a href="#" data-seccion="sec-transacciones">
+          <span class="icono-menu">📋</span> Resumen de Transacciones
+        </a>
+      </li>
+      <li>
+        <a href="#" data-seccion="sec-consignacion">
+          <span class="icono-menu">💵</span> Consignación Electrónica
+        </a>
+      </li>
+      <li>
+        <a href="#" data-seccion="sec-retiro">
+          <span class="icono-menu">💳</span> Retiro de Dinero
+        </a>
+      </li>
+      <li>
+        <a href="#" data-seccion="sec-servicios">
+          <span class="icono-menu">🔌</span> Pago de Servicios Públicos
+        </a>
+      </li>
+      <li>
+        <a href="#" data-seccion="sec-certificado">
+          <span class="icono-menu">📄</span> Certificado Bancario
+        </a>
+      </li>
+    </ul>
+
+    <!-- Cerrar sesión -->
+    <div class="sidebar-cerrar-sesion">
+      <a href="#" id="btn-cerrar-sesion">
+        <span>🚪</span> Cerrar Sesión
+      </a>
+    </div>
+
+  </nav>
+
+  <!-- ========== CONTENIDO PRINCIPAL ========== -->
+  <main class="contenido-principal">
+
+    <!-- Barra superior -->
+    <div class="barra-top">
+      <button class="btn-menu-movil" id="btn-menu-movil">☰</button>
+      <h1 class="titulo-pagina" id="titulo-barra">Resumen de Cuenta</h1>
+      <span class="fecha-actual" id="fecha-actual"></span>
+    </div>
+
+    <!-- Área de contenido dinámico -->
+    <div class="area-contenido">
+
+      <!-- Tarjeta de cuenta (visible siempre en inicio) -->
+      <div class="tarjeta-cuenta" id="tarjeta-cuenta">
+        <div class="etiqueta-cuenta">Cuenta de Ahorros</div>
+        <div class="numero-cuenta" id="tarjeta-numero-cuenta">ACME-00000</div>
+        <div class="fila-info">
+          <div class="item-info">
+            <div class="etiqueta">Titular</div>
+            <div class="valor" id="tarjeta-nombre">—</div>
+          </div>
+          <div class="item-info">
+            <div class="etiqueta">Saldo Disponible</div>
+            <div class="valor saldo" id="tarjeta-saldo">$0.00</div>
+          </div>
+          <div class="item-info">
+            <div class="etiqueta">Fecha de Apertura</div>
+            <div class="valor" id="tarjeta-fecha-creacion">—</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ======== SECCIÓN INICIO ======== -->
+      <div class="seccion-dashboard activa" id="sec-inicio">
+        <h2 class="titulo-seccion">Bienvenido a su Banca en Línea</h2>
+        <div class="linea-dorada"></div>
+        <div class="tarjeta-contenido">
+          <p style="color: #4a5568; font-size: 15px; line-height: 1.8;">
+            Desde este panel puede gestionar su cuenta bancaria de forma segura y sencilla.
+            Use el menú de la izquierda para navegar entre las diferentes opciones disponibles.
+          </p>
+          <br />
+          <p style="color: #4a5568; font-size: 14px;">
+            <strong>Opciones disponibles:</strong><br />
+            📋 <strong>Resumen de Transacciones</strong> — Consulte sus últimas 10 operaciones.<br />
+            💵 <strong>Consignación Electrónica</strong> — Deposite dinero en su cuenta.<br />
+            💳 <strong>Retiro de Dinero</strong> — Retire fondos de su cuenta.<br />
+            🔌 <strong>Pago de Servicios Públicos</strong> — Pague energía, agua, gas o internet.<br />
+            📄 <strong>Certificado Bancario</strong> — Obtenga su certificado de cuenta activa.
+          </p>
+        </div>
+      </div>
+
+      <!-- ======== SECCIÓN TRANSACCIONES ======== -->
+      <div class="seccion-dashboard" id="sec-transacciones">
+        <h2 class="titulo-seccion">Últimas 10 Transacciones</h2>
+        <div class="linea-dorada"></div>
+        <div class="tarjeta-contenido">
+          <div class="tabla-responsive">
+            <table class="tabla-transacciones">
+              <thead>
+                <tr>
+                  <th>Fecha</th>
+                  <th>Referencia</th>
+                  <th>Tipo</th>
+                  <th>Concepto</th>
+                  <th>Valor</th>
+                </tr>
+              </thead>
+              <tbody id="tbody-transacciones">
+                <tr>
+                  <td colspan="5" class="sin-transacciones">Cargando transacciones...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <br />
+          <button class="btn-imprimir" id="btn-imprimir-transacciones">🖨️ Imprimir Resumen</button>
+        </div>
+      </div>
+
+      <!-- ======== SECCIÓN CONSIGNACIÓN ======== -->
+      <div class="seccion-dashboard" id="sec-consignacion">
+        <h2 class="titulo-seccion">Consignación Electrónica</h2>
+        <div class="linea-dorada"></div>
+        <div class="tarjeta-contenido">
+
+          <div class="mensaje-error" id="error-consignacion">Error</div>
+
+          <form id="form-consignacion">
+            <div class="grupo-campo campo-max">
+              <label>Número de Cuenta</label>
+              <input type="text" id="consig-numero-cuenta" readonly />
+            </div>
+            <div class="grupo-campo campo-max">
+              <label>Nombre Completo</label>
+              <input type="text" id="consig-nombre" readonly />
+            </div>
+            <div class="grupo-campo campo-max">
+              <label for="consig-cantidad">Cantidad a Consignar ($)</label>
+              <input type="number" id="consig-cantidad" placeholder="Ej: 100000" min="1" step="any" />
+            </div>
+            <button type="submit" class="btn-principal">Realizar Consignación</button>
+          </form>
+
+          <!-- Resumen de consignación -->
+          <div class="caja-resumen-transaccion" id="resumen-consignacion" style="display:none;">
+            <h4>✅ Consignación Realizada Exitosamente</h4>
+            <div class="fila-dato">
+              <span class="etiqueta">Fecha:</span>
+              <span class="valor" id="consig-res-fecha"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Referencia:</span>
+              <span class="valor" id="consig-res-referencia"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Tipo:</span>
+              <span class="valor" id="consig-res-tipo"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Concepto:</span>
+              <span class="valor" id="consig-res-concepto"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Valor Consignado:</span>
+              <span class="valor" id="consig-res-valor"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Nuevo Saldo:</span>
+              <span class="valor" id="consig-res-saldo"></span>
+            </div>
+            <br />
+            <button class="btn-imprimir" id="btn-imprimir-consig">🖨️ Imprimir Comprobante</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ======== SECCIÓN RETIRO ======== -->
+      <div class="seccion-dashboard" id="sec-retiro">
+        <h2 class="titulo-seccion">Retiro de Dinero</h2>
+        <div class="linea-dorada"></div>
+        <div class="tarjeta-contenido">
+
+          <div class="mensaje-error" id="error-retiro">Error</div>
+
+          <form id="form-retiro">
+            <div class="grupo-campo campo-max">
+              <label>Número de Cuenta</label>
+              <input type="text" id="retiro-numero-cuenta" readonly />
+            </div>
+            <div class="grupo-campo campo-max">
+              <label>Nombre Completo</label>
+              <input type="text" id="retiro-nombre" readonly />
+            </div>
+            <div class="grupo-campo campo-max">
+              <label for="retiro-cantidad">Cantidad a Retirar ($)</label>
+              <input type="number" id="retiro-cantidad" placeholder="Ej: 50000" min="1" step="any" />
+            </div>
+            <button type="submit" class="btn-principal">Realizar Retiro</button>
+          </form>
+
+          <!-- Resumen de retiro -->
+          <div class="caja-resumen-transaccion" id="resumen-retiro" style="display:none;">
+            <h4>✅ Retiro Realizado Exitosamente</h4>
+            <div class="fila-dato">
+              <span class="etiqueta">Fecha:</span>
+              <span class="valor" id="retiro-res-fecha"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Referencia:</span>
+              <span class="valor" id="retiro-res-referencia"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Tipo:</span>
+              <span class="valor" id="retiro-res-tipo"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Concepto:</span>
+              <span class="valor" id="retiro-res-concepto"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Valor Retirado:</span>
+              <span class="valor" id="retiro-res-valor"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Saldo Restante:</span>
+              <span class="valor" id="retiro-res-saldo"></span>
+            </div>
+            <br />
+            <button class="btn-imprimir" id="btn-imprimir-retiro">🖨️ Imprimir Comprobante</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ======== SECCIÓN SERVICIOS PÚBLICOS ======== -->
+      <div class="seccion-dashboard" id="sec-servicios">
+        <h2 class="titulo-seccion">Pago de Servicios Públicos</h2>
+        <div class="linea-dorada"></div>
+        <div class="tarjeta-contenido">
+
+          <div class="mensaje-error" id="error-servicios">Error</div>
+
+          <form id="form-servicios">
+            <div class="grupo-campo campo-max">
+              <label>Número de Cuenta</label>
+              <input type="text" id="serv-numero-cuenta" readonly />
+            </div>
+            <div class="grupo-campo campo-max">
+              <label>Nombre Completo</label>
+              <input type="text" id="serv-nombre" readonly />
+            </div>
+            <div class="grupo-campo campo-max">
+              <label for="serv-tipo">Servicio Público</label>
+              <select id="serv-tipo">
+                <option value="">-- Seleccione el servicio --</option>
+                <option value="Energía">Energía</option>
+                <option value="Agua">Agua</option>
+                <option value="Gas Natural">Gas Natural</option>
+                <option value="Internet">Internet</option>
+              </select>
+            </div>
+            <div class="grupo-campo campo-max">
+              <label for="serv-referencia">Referencia del Servicio</label>
+              <input type="text" id="serv-referencia" placeholder="Número de referencia de la factura" />
+            </div>
+            <div class="grupo-campo campo-max">
+              <label for="serv-valor">Valor a Pagar ($)</label>
+              <input type="number" id="serv-valor" placeholder="Ej: 85000" min="1" step="any" />
+            </div>
+            <button type="submit" class="btn-principal">Realizar Pago</button>
+          </form>
+
+          <!-- Resumen de pago de servicios -->
+          <div class="caja-resumen-transaccion" id="resumen-servicios" style="display:none;">
+            <h4>✅ Pago Realizado Exitosamente</h4>
+            <div class="fila-dato">
+              <span class="etiqueta">Fecha:</span>
+              <span class="valor" id="serv-res-fecha"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Referencia:</span>
+              <span class="valor" id="serv-res-referencia"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Tipo:</span>
+              <span class="valor" id="serv-res-tipo"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Concepto:</span>
+              <span class="valor" id="serv-res-concepto"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Valor Pagado:</span>
+              <span class="valor" id="serv-res-valor"></span>
+            </div>
+            <div class="fila-dato">
+              <span class="etiqueta">Saldo Restante:</span>
+              <span class="valor" id="serv-res-saldo"></span>
+            </div>
+            <br />
+            <button class="btn-imprimir" id="btn-imprimir-servicios">🖨️ Imprimir Comprobante</button>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- ======== SECCIÓN CERTIFICADO BANCARIO ======== -->
+      <div class="seccion-dashboard" id="sec-certificado">
+        <h2 class="titulo-seccion">Certificado Bancario</h2>
+        <div class="linea-dorada"></div>
+        <div class="tarjeta-contenido">
+
+          <!-- Certificado -->
+          <div class="certificado" id="certificado-bancario">
+
+            <!-- Encabezado del certificado -->
+            <div class="certificado-encabezado">
+              <div class="logo-cert">🏦</div>
+              <h2>ACME BANK</h2>
+              <div class="subtitulo-cert">Bank & Trust — Establecimiento de Crédito</div>
+            </div>
+
+            <div class="linea-dorada-cert"></div>
+
+            <div class="certificado-titulo">CERTIFICADO BANCARIO</div>
+
+            <!-- Cuerpo del certificado -->
+            <div class="certificado-cuerpo">
+              <p>
+                El Banco ACME, institución financiera legalmente establecida en la República de Colombia,
+                por medio del presente documento <strong>CERTIFICA</strong> que el señor(a):
+              </p>
+              <br />
+              <p>
+                <strong>Nombre: </strong><span id="cert-nombre">—</span><br />
+                <strong>Tipo de Identificación: </strong><span id="cert-tipo-id">—</span><br />
+                <strong>Número de Identificación: </strong><span id="cert-numero-id">—</span>
+              </p>
+              <br />
+              <p>
+                Es titular de la cuenta de ahorros número <strong><span id="cert-numero-cuenta">—</span></strong>,
+                la cual se encuentra en estado <strong>ACTIVO</strong> en nuestra entidad financiera,
+                con fecha de apertura el día <strong><span id="cert-fecha-creacion">—</span></strong>.
+              </p>
+              <br />
+              <p>
+                Este certificado se expide a solicitud del interesado el día
+                <strong><span id="cert-fecha-expedicion">—</span></strong>,
+                en la ciudad de <strong><span id="cert-ciudad">—</span></strong>, Colombia.
+              </p>
+              <br />
+              <p>
+                El Banco ACME se permite informar que la cuenta mencionada cumple con todos los
+                requisitos legales vigentes y se encuentra al día con sus obligaciones financieras.
+              </p>
+            </div>
+
+            <div class="linea-dorada-cert"></div>
+
+            <!-- Pie del certificado con firmas -->
+            <div class="certificado-pie">
+              <div class="certificado-firma">
+                <div class="linea-firma"></div>
+                <p>Gerente General</p>
+                <p><strong>Banco ACME</strong></p>
+              </div>
+              <div style="text-align:center; color: #718096; font-size: 12px;">
+                <p>NIT: 900.123.456-7</p>
+                <p>www.acmebank.com.co</p>
+                <p>Vigilado por la Superintendencia Financiera de Colombia</p>
+              </div>
+              <div class="certificado-firma">
+                <div class="linea-firma"></div>
+                <p>Director de Operaciones</p>
+                <p><strong>Banco ACME</strong></p>
+              </div>
+            </div>
+
+          </div>
+
+          <br />
+          <button class="btn-imprimir" id="btn-imprimir-cert">🖨️ Imprimir Certificado</button>
+
+        </div>
+      </div>
+
+    </div><!-- fin area-contenido -->
+  </main>
+
+  <script src="js/dashboard.js"></script>
+
+</body>
+</html>
