@@ -5,10 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Source+Sans+3:wght@300;400;600&display=swap');
 
 :root {
-  --azul-oscuro: #0a2342;
-  --azul-medio: #1a4a7a;
+  --azul-oscuro: #272727;
+  --azul-medio: #000000;
   --azul-claro: #2e7dc5;
-  --dorado: #c9a84c;
+  --dorado: #ffe396;
   --blanco: #ffffff;
   --gris-claro: #f4f6f9;
   --gris-medio: #b0b8c5;
@@ -57,6 +57,9 @@ body {
   color: var(--dorado);
   font-size: 22px;
   letter-spacing: 2px;
+  text-shadow:
+    0 0 5px #e6c97a,
+    0 0 10px #c6a75e;
 }
 
 .sidebar-logo .slogan {
@@ -221,6 +224,9 @@ body {
   letter-spacing: 2px;
   margin-bottom: 20px;
   color: var(--dorado);
+  text-shadow:
+    0 0 5px #e6c97a,
+    0 0 10px #c6a75e;
 }
 
 .tarjeta-cuenta .fila-info {
