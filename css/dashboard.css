@@ -154,7 +154,7 @@ body {
 
 /* Barra superior del dashboard */
 .barra-top {
-  background-color: var(--blanco);
+  background-color: #000000;
   padding: 15px 30px;
   display: flex;
   align-items: center;
@@ -165,12 +165,12 @@ body {
 
 .barra-top .titulo-pagina {
   font-family: 'Playfair Display', serif;
-  color: var(--azul-oscuro);
+  color:white;
   font-size: 20px;
 }
 
 .barra-top .fecha-actual {
-  color: var(--gris-texto);
+  color:rgb(255, 255, 255);
   font-size: 13px;
 }
 
@@ -195,14 +195,13 @@ body {
   background: linear-gradient(135deg, var(--azul-medio) 0%, var(--azul-oscuro) 100%);
   border-radius: 12px;
   padding: 30px;
-  color: var(--blanco);
+  color: white;
   margin-bottom: 25px;
   position: relative;
   overflow: hidden;
 }
 
 .tarjeta-cuenta::before {
-  content: '🏦';
   position: absolute;
   right: 25px;
   top: 20px;
@@ -334,8 +333,11 @@ body {
 /* Botones del dashboard */
 .btn-principal {
   padding: 12px 25px;
-  background: linear-gradient(135deg, var(--azul-medio), var(--azul-claro));
-  color: var(--blanco);
+  text-shadow:
+    0 0 5px #e6c97a,
+    0 0 10px #c6a75e;
+  color: rgb(219, 219, 138);
+  background-color: black;
   border: none;
   border-radius: 6px;
   font-size: 14px;
