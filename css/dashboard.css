@@ -154,7 +154,7 @@ body {
 
 /* Barra superior del dashboard */
 .barra-top {
-  background-color: #000000;
+  background: linear-gradient(135deg, var(--azul-medio) 0%, var(--azul-oscuro) 100%);
   padding: 15px 30px;
   display: flex;
   align-items: center;
