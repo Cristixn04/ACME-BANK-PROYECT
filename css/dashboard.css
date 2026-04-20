@@ -372,6 +372,9 @@ body {
 .btn-imprimir:hover {
   background: var(--azul-medio);
   color: var(--blanco);
+  text-shadow:
+    0 0 5px #e6c97a,
+    0 0 10px #c6a75e;
 }
 
 /* ========== TABLA DE TRANSACCIONES ========== */

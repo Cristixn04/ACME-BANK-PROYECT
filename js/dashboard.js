@@ -159,11 +159,15 @@ document.addEventListener('DOMContentLoaded', function () {
   // ============================================================
   // SECCIÓN: RESUMEN DE TRANSACCIONES
   // ============================================================
+  // Funcion para ver en una tabla las ultimas transacciones ya sea de agua o luz ,etc
+
   function cargarTablaTransacciones() {
     var tbody = document.getElementById('tbody-transacciones');
     tbody.innerHTML = '';
 
     // Recargar usuario desde localStorage para tener datos frescos
+
+ 
     var usuarios = cargarUsuarios();
     for (var i = 0; i < usuarios.length; i++) {
       if (usuarios[i].tipoId === usuario.tipoId && usuarios[i].numeroId === usuario.numeroId) {
@@ -173,6 +177,7 @@ document.addEventListener('DOMContentLoaded', function () {
       }
     }
 
+    
     var transacciones = usuario.transacciones || [];
 
     if (transacciones.length === 0) {
@@ -180,7 +185,8 @@ document.addEventListener('DOMContentLoaded', function () {
       return;
     }
 
-    // Tomar las últimas 10 transacciones (de más reciente a más antigua)
+
+    // Tomar las últimas transacciones (de más reciente a más antigua) Incluye retiros y consignaciones
     var ultimas10 = transacciones.slice(-10).reverse();
 
     ultimas10.forEach(function (trans) {
@@ -207,7 +213,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  // ============================================================
+  // ====================================================================================================================================================
   // SECCIÓN: CONSIGNACIÓN ELECTRÓNICA
   // ============================================================
   function prepararConsignacion() {
