@@ -108,6 +108,20 @@ body {
   cursor: pointer;
 }
 
+.datos_moviles {
+  display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 13px 20px;
+    color: var(--gris-medio);
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+
+
 .sidebar-menu li a:hover,
 .sidebar-menu li a.activo {
   background-color: rgba(46, 125, 197, 0.3);
