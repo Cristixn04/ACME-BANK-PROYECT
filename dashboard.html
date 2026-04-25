@@ -26,6 +26,7 @@
 
     <!-- Menú de navegación -->
     <ul class="sidebar-menu">
+      
       <li>
         <a href="#" data-seccion="sec-inicio">
           <img class="icono-menu" src="img/resumen_cuenta.png" alt="resumen_cuenta"> Resumen de Cuenta
@@ -57,7 +58,21 @@
         </a>
       </li>
     
-  
+      <li>
+        <a href="#" data-seccion="sec-recargas">
+          <img class="icono-menu" src="img/retiro de dinero.png"> Recargas Telefónicas
+        </a>
+      </li>
+      <li>
+        <a href="#" data-seccion="sec-egresos">
+          <img class="icono-menu" src="img/transacciones.png"> Reporte de Egresos
+        </a>
+      </li>
+      <li>
+        <a href="#" data-seccion="sec-reporte-saldos">
+          <img class="icono-menu" src="img/resumen_cuenta.png"> Reporte de Saldos
+        </a>
+      </li>
   
 
     <!-- Cerrar sesión -->
@@ -83,6 +98,8 @@
 
     <!-- Área de contenido dinámico -->
     <div class="area-contenido">
+
+      
 
       <!-- Tarjeta de cuenta (visible siempre en inicio) -->
       <div class="tarjeta-cuenta" id="tarjeta-cuenta">
@@ -422,6 +439,221 @@
       </div>
 
     </div><!-- fin area-contenido -->
+
+    <!-- ======== SECCIÓN RECARGAS TELEFÓNICAS ======== -->
+    <div class="seccion-dashboard" id="sec-recargas">
+      <h2 class="titulo-seccion">Recargas Telefónicas</h2>
+      <div class="linea-dorada"></div>
+      <div class="tarjeta-contenido">
+    
+        <div class="mensaje-error" id="error-recargas">Error</div>
+    
+        <!-- Selector visual de operador -->
+        <div class="grupo-campo campo-max">
+          <label>Selecciona el Operador</label>
+          <div class="operadores-grid" id="operadores-grid">
+            <div class="operador-card" data-operador="MovilNet">
+              <div class="operador-logo op-movilnet">MN</div>
+              <span>MovilNet</span>
+            </div>
+            <div class="operador-card" data-operador="Amber Phone">
+              <div class="operador-logo op-amber">AP</div>
+              <span>Amber Phone</span>
+            </div>
+            <div class="operador-card" data-operador="Dynaphone">
+              <div class="operador-logo op-dyna">DP</div>
+              <span>Dynaphone</span>
+            </div>
+            <div class="operador-card" data-operador="SkyPhone">
+              <div class="operador-logo op-sky">SK</div>
+              <span>SkyPhone</span>
+            </div>
+          </div>
+          <input type="hidden" id="recarga-operador" />
+        </div>
+    
+        <form id="form-recargas">
+          <div class="grupo-campo campo-max">
+            <label>Número de Cuenta</label>
+            <input type="text" id="recarga-numero-cuenta" readonly />
+          </div>
+          <div class="grupo-campo campo-max">
+            <label>Nombre Completo</label>
+            <input type="text" id="recarga-nombre" readonly />
+          </div>
+          <div class="grupo-campo campo-max">
+            <label for="recarga-telefono">Número Telefónico a Recargar</label>
+            <input type="tel" id="recarga-telefono" placeholder="Ej: 3001234567" maxlength="10" />
+          </div>
+          <div class="grupo-campo campo-max">
+            <label for="recarga-valor">Valor de la Recarga ($)</label>
+            <input type="number" id="recarga-valor" placeholder="Ej: 10000" min="1000" step="1000" />
+          </div>
+          <button type="submit" class="btn-principal">Realizar Recarga</button>
+        </form>
+    
+        <!-- Resumen de recarga -->
+        <div class="caja-resumen-transaccion" id="resumen-recargas" style="display:none;">
+          <h4>✅ Recarga Realizada Exitosamente</h4>
+          <div class="fila-dato">
+            <span class="etiqueta">Fecha:</span>
+            <span class="valor" id="rec-res-fecha"></span>
+          </div>
+          <div class="fila-dato">
+            <span class="etiqueta">Referencia:</span>
+            <span class="valor" id="rec-res-referencia"></span>
+          </div>
+          <div class="fila-dato">
+            <span class="etiqueta">Operador:</span>
+            <span class="valor" id="rec-res-operador"></span>
+          </div>
+          <div class="fila-dato">
+            <span class="etiqueta">Número Recargado:</span>
+            <span class="valor" id="rec-res-telefono"></span>
+          </div>
+          <div class="fila-dato">
+            <span class="etiqueta">Valor:</span>
+            <span class="valor" id="rec-res-valor"></span>
+          </div>
+          <div class="fila-dato">
+            <span class="etiqueta">Saldo Restante:</span>
+            <span class="valor" id="rec-res-saldo"></span>
+          </div>
+          <br />
+          <button class="btn-imprimir" id="btn-imprimir-recarga">🖨️ Imprimir Comprobante</button>
+        </div>
+    
+      </div>
+    </div>
+    
+    <!-- ======== SECCIÓN REPORTE DE EGRESOS MENSUALES ======== -->
+    <div class="seccion-dashboard" id="sec-egresos">
+      <h2 class="titulo-seccion">Reporte de Egresos Mensuales</h2>
+      <div class="linea-dorada"></div>
+      <div class="tarjeta-contenido">
+    
+        <!-- Filtro de año -->
+        <div class="egresos-filtros">
+          <div class="grupo-campo">
+            <label for="egresos-anio">Año</label>
+            <select id="egresos-anio"></select>
+          </div>
+          <button class="btn-principal btn-sm" id="btn-generar-egresos">Generar Reporte</button>
+        </div>
+    
+        <!-- Tarjetas resumen egresos -->
+        <div class="egresos-resumen-cards" id="egresos-resumen-cards" style="display:none;">
+          <div class="egreso-card">
+            <div class="egreso-card-icono">💸</div>
+            <div class="egreso-card-info">
+              <div class="egreso-card-label">Total Egresos del Año</div>
+              <div class="egreso-card-valor" id="egresos-total-anio">$0</div>
+            </div>
+          </div>
+          <div class="egreso-card">
+            <div class="egreso-card-icono">🏧</div>
+            <div class="egreso-card-info">
+              <div class="egreso-card-label">Total Retiros</div>
+              <div class="egreso-card-valor" id="egresos-total-retiros">$0</div>
+            </div>
+          </div>
+          <div class="egreso-card">
+            <div class="egreso-card-icono">📱</div>
+            <div class="egreso-card-info">
+              <div class="egreso-card-label">Total Servicios / Recargas</div>
+              <div class="egreso-card-valor" id="egresos-total-servicios">$0</div>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Tabla de egresos por mes -->
+        <div class="tabla-responsive" id="egresos-tabla-wrap" style="display:none;">
+          <table class="tabla-transacciones tabla-egresos">
+            <thead>
+              <tr>
+                <th>Mes</th>
+                <th>Total Retiros</th>
+                <th>Servicios Públicos</th>
+                <th>Recargas</th>
+                <th>Total Egresos</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-egresos"></tbody>
+            <tfoot>
+              <tr class="fila-total-egresos">
+                <td><strong>TOTAL</strong></td>
+                <td id="foot-retiros">$0</td>
+                <td id="foot-servicios">$0</td>
+                <td id="foot-recargas">$0</td>
+                <td id="foot-total">$0</td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+    
+        <div class="egresos-vacio" id="egresos-vacio" style="display:none;">
+          <span>📭</span>
+          <p>No hay egresos registrados para el año seleccionado.</p>
+        </div>
+    
+        <br />
+        <button class="btn-imprimir" id="btn-imprimir-egresos" style="display:none;">🖨️ Imprimir Reporte</button>
+    
+      </div>
+    </div>
+
+    <!-- ======== SECCIÓN REPORTE DE SALDOS DE CUENTAS ACTIVAS ======== -->
+    <div class="seccion-dashboard" id="sec-reporte-saldos">
+      <h2 class="titulo-seccion">Reporte de Saldos — Cuentas Activas</h2>
+      <div class="linea-dorada"></div>
+      <div class="tarjeta-contenido">
+    
+        <!-- Encabezado del reporte -->
+        <div class="reporte-encabezado" id="reporte-saldos-header">
+          <div class="reporte-meta">
+            <div class="reporte-meta-item">
+              <span class="reporte-meta-label">Fecha de Corte</span>
+              <span class="reporte-meta-valor" id="rep-fecha-corte">—</span>
+            </div>
+            <div class="reporte-meta-item">
+              <span class="reporte-meta-label">Cuentas Activas</span>
+              <span class="reporte-meta-valor destacado" id="rep-total-cuentas">0</span>
+            </div>
+            <div class="reporte-meta-item">
+              <span class="reporte-meta-label">Saldo Total</span>
+              <span class="reporte-meta-valor destacado verde" id="rep-saldo-total">$0</span>
+            </div>
+          </div>
+        </div>
+    
+        <!-- Tabla de cuentas -->
+        <div class="tabla-responsive">
+          <table class="tabla-transacciones tabla-saldos">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>N° Cuenta</th>
+                <th>Fecha Apertura</th>
+                <th>Tipo ID</th>
+                <th>N° Identificación</th>
+                <th>Nombre Completo</th>
+                <th>Saldo Actual</th>
+              </tr>
+            </thead>
+            <tbody id="tbody-saldos">
+              <tr>
+                <td colspan="7" class="sin-transacciones">Cargando información...</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    
+        <br />
+        <button class="btn-imprimir" id="btn-imprimir-saldos">🖨️ Imprimir Reporte</button>
+    
+      </div>
+    </div>
+
   </main>
 
   <script src="js/dashboard.js"></script>
